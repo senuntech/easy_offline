@@ -15,6 +15,13 @@ Uma biblioteca **Offline-First reativa, fortemente tipada e de baixíssima verbo
 
 ---
 
+## 📁 Estrutura do Repositório
+
+- `lib/`: Código-fonte da biblioteca `easy_offline`.
+- `example/`: Projeto de exemplo completo Flutter demonstrando a utilização da biblioteca. Nota: a pasta `example` faz parte do mesmo repositório do pacote.
+
+---
+
 ## 🚀 Guia Rápido de Uso
 
 ### 1. Defina o seu Modelo (estendendo `SyncModel`)
