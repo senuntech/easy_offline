@@ -1,6 +1,6 @@
 name: easy_offline
 description: Uma biblioteca Offline-First reativa, fortemente tipada e de baixíssima verbosidade (Zero Boilerplate) para aplicações Flutter & Dart.
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/senuntech/easy_offline
 
 environment:
