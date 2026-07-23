@@ -1,24 +1,14 @@
 import 'package:easy_offline/easy_offline.dart';
-import 'task_model.dart';
 import 'mock_remote_service.dart';
+import 'task_model.dart';
 
 class TaskRepository extends EasyOfflineRepository<TaskModel> {
-  final MockRemoteService mockRemoteService;
+  final MockRemoteService mockService;
 
-  TaskRepository({MockRemoteService? remoteService})
-      : mockRemoteService = remoteService ?? MockRemoteService(),
-        super(
-          tableName: 'tasks',
+  TaskRepository({required this.mockService})
+      : super(
+          tableName: 'example_tasks',
           fromJson: TaskModel.fromJson,
-          remoteService: remoteService ?? MockRemoteService(),
+          remoteService: mockService,
         );
-
-  bool get isOnline => mockRemoteService.isOnline;
-
-  void toggleOnlineState(bool online) {
-    mockRemoteService.isOnline = online;
-    if (online) {
-      sync();
-    }
-  }
 }

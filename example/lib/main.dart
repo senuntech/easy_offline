@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'mock_remote_service.dart';
 import 'task_repository.dart';
 import 'home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  final taskRepository = TaskRepository();
-  await taskRepository.initialize();
 
-  runApp(EasyOfflineExampleApp(repository: taskRepository));
+  final mockService = MockRemoteService();
+  final repository = TaskRepository(mockService: mockService);
+
+  // Inicializa a tabela do armazenamento local (carrega cache persistido em disco)
+  await repository.initialize();
+
+  runApp(MyApp(repository: repository));
 }
 
-class EasyOfflineExampleApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   final TaskRepository repository;
 
-  const EasyOfflineExampleApp({super.key, required this.repository});
+  const MyApp({super.key, required this.repository});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class EasyOfflineExampleApp extends StatelessWidget {
       title: 'Easy Offline Example',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: HomePage(repository: repository),
